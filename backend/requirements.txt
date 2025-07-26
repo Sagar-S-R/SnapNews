@@ -1,0 +1,27 @@
+# Core FastAPI dependencies
+fastapi==0.103.1
+uvicorn==0.23.2
+pydantic==2.3.0
+pydantic-settings==2.0.3
+python-dotenv==1.0.0
+
+# HTTP requests
+requests==2.31.0
+httpx==0.25.0
+
+# AI/ML dependencies
+transformers==4.33.1
+torch==2.0.1
+tokenizers==0.13.3
+
+# Text processing
+newspaper3k==0.2.8
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# Development
+pytest==7.4.2
+pytest-asyncio==0.21.1
+
+# CORS
+python-multipart==0.0.6
