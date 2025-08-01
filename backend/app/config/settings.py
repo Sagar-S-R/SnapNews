@@ -15,15 +15,18 @@ class Settings(BaseSettings):
     
     # API settings
     API_HOST: str = "0.0.0.0"
-    API_PORT: int = 8000
-    DEBUG: bool = True
+    API_PORT: int = int(os.getenv("PORT", 8000))
+    DEBUG: bool = os.getenv("DEBUG", "false").lower() == "true"
+    ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
     
-    # CORS settings
+    # CORS settings - Add your Vercel frontend URL
     ALLOWED_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:5173",
         "http://127.0.0.1:3000",
-        "http://127.0.0.1:5173"
+        "http://127.0.0.1:5173",
+        "https://your-frontend-app.vercel.app",  # Replace with your actual Vercel URL
+        "https://*.vercel.app",  # Allow all Vercel preview deployments
     ]
     
     class Config:

@@ -1,33 +1,62 @@
-# 🤖 SnapNews Backend API
+# SnapNews Backend
 
-FastAPI-based backend service for SnapNews that provides news aggregation and AI-powered summarization using HuggingFace BART model.
+FastAPI backend for SnapNews with AI-powered news summarization.
 
-## 🌟 Features
+## Local Development
 
-- **News API Integration**: Real-time news from 70,000+ sources via NewsAPI
-- **AI Summarization**: Facebook BART-large-CNN model for intelligent summaries
-- **Async Processing**: High-performance async endpoints
-- **Content Extraction**: Automatic article content extraction from URLs
-- **Health Monitoring**: Built-in health checks and monitoring
-- **CORS Support**: Configured for frontend integration
-- **Auto Documentation**: Interactive API docs with Swagger UI
-
-## 🚀 Quick Start
-
-### 1. Environment Setup
 ```bash
-# Clone and navigate
-cd SnapNews/backend
-
-# Create virtual environment
+cd backend
 python -m venv venv
+venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
 
-# Activate (Windows)
-venv\Scripts\activate
-# Activate (Linux/Mac)
-source venv/bin/activate
+## Environment Variables
 
-# Install dependencies
+Create a `.env` file:
+
+```env
+NEWSAPI_KEY=your_newsapi_key_here
+API_HOST=0.0.0.0
+PORT=8000
+DEBUG=true
+ENVIRONMENT=development
+SUMMARIZER_MODEL=facebook/bart-large-cnn
+MAX_INPUT_LENGTH=1024
+MAX_OUTPUT_LENGTH=150
+MIN_OUTPUT_LENGTH=50
+```
+
+## Render Deployment
+
+1. Connect your GitHub repository to Render
+2. Create a new Web Service
+3. Set the build settings:
+   - **Root Directory**: `backend`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn --bind 0.0.0.0:$PORT --workers 4 --worker-class uvicorn.workers.UvicornWorker app.main:app`
+4. Add environment variables in Render dashboard:
+   - `NEWSAPI_KEY`: Your NewsAPI key
+   - `ENVIRONMENT`: `production`
+   - `DEBUG`: `false`
+   - Add your Vercel frontend URL to CORS origins in settings.py
+
+## API Endpoints
+
+- **Health Check**: `GET /api/v1/health`
+- **Search News**: `POST /api/v1/news/search`
+- **Top Headlines**: `GET /api/v1/news/headlines`
+- **Summarize Text**: `POST /api/v1/summarize`
+- **Summarize URL**: `POST /api/v1/summarize-url`
+
+## Docker Build
+
+```bash
+docker build -t snapnews-backend .
+docker run -p 8000:8000 snapnews-backend
+```
 pip install -r requirements.txt
 ```
 

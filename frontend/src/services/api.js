@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-// API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
+// API Configuration - Update this with your Render backend URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
+  (import.meta.env.PROD 
+    ? 'https://your-backend-app.onrender.com/api/v1' 
+    : 'http://localhost:8000/api/v1'
+  );
 
 // Create axios instance with default config
 const api = axios.create({

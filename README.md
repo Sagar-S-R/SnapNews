@@ -2,12 +2,33 @@
 
 An intelligent news application that fetches the latest headlines and provides AI-powered summaries using HuggingFace BART model. Built with React + FastAPI for a modern, responsive experience.
 
-![SnapNews Demo](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
+![SnapNews](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
 ![React](https://img.shields.io/badge/React-19.0.0-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.103.1-green)
-![Python](https://img.shields.io/badge/Python-3.8+-yellow)
+![Python](https://img.shields.io/badge/Python-3.9+-yellow)
 
-## 🌟 Features
+## �️ Project Structure
+
+```
+SnapNews/
+├── frontend/                 # React + Vite + Tailwind CSS
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── Dockerfile
+│   └── README.md
+├── backend/                  # FastAPI + Python
+│   ├── app/
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── README.md
+├── docker-compose.yml        # Local development setup
+├── nginx.conf               # Reverse proxy configuration
+└── README.md               # This file
+```
+
+## �🌟 Features
 
 ### 🧠 AI-Powered Summarization
 - **Advanced BART Model**: Uses Facebook's `bart-large-cnn` for high-quality summaries
@@ -23,11 +44,74 @@ An intelligent news application that fetches the latest headlines and provides A
 
 ### 🎨 Modern UI/UX
 - **Responsive Design**: Built with Tailwind CSS for all devices
-- **Dark/Light Mode**: Automatic theme adaptation
 - **Loading States**: Smooth loading animations and feedback
 - **Error Handling**: Graceful error messages and retry mechanisms
 
-### ⚡ Performance & Reliability
+## 🚀 Quick Start
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd SnapNews
+   ```
+
+2. **Backend Setup**
+   ```bash
+   cd backend
+   python -m venv venv
+   venv\Scripts\activate  # Windows
+   pip install -r requirements.txt
+   cp .env.example .env  # Add your NewsAPI key
+   uvicorn app.main:app --reload
+   ```
+
+3. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   cp .env.example .env.local
+   npm run dev
+   ```
+
+### Docker Development
+
+```bash
+docker-compose up --build
+```
+
+Access the application:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
+
+## 🌐 Production Deployment
+
+### Frontend (Vercel)
+
+1. Connect your GitHub repository to Vercel
+2. Set build configuration:
+   - **Root Directory**: `frontend`
+   - **Framework**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+3. Add environment variables:
+   - `VITE_API_BASE_URL=https://your-backend.onrender.com/api/v1`
+
+### Backend (Render)
+
+1. Connect your GitHub repository to Render
+2. Create a new Web Service:
+   - **Root Directory**: `backend`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn --bind 0.0.0.0:$PORT --workers 4 --worker-class uvicorn.workers.UvicornWorker app.main:app`
+3. Add environment variables:
+   - `NEWSAPI_KEY`: Your NewsAPI key
+   - `ENVIRONMENT`: `production`
+   - `DEBUG`: `false`
+
+## ⚡ Performance & Reliability
 - **Fast API Backend**: High-performance FastAPI with async support
 - **Caching**: Intelligent caching for better performance
 - **Error Recovery**: Robust error handling and fallback mechanisms
@@ -386,9 +470,9 @@ node --version
 4. Push to branch: `git push origin feature-name`
 5. Submit a Pull Request
 
-## 📝 License
+<!-- ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
 
 ## 🙏 Acknowledgments
 
@@ -398,12 +482,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **FastAPI** team for the excellent framework
 - **React** and **Vite** teams for the frontend tools
 
-## 📞 Support
-
-- 📧 Email: your-email@example.com
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/snapnews/issues)
-- 📖 Documentation: [Wiki](https://github.com/your-username/snapnews/wiki)
-
 ---
-
-**Built with ❤️ using React, FastAPI, and HuggingFace Transformers**

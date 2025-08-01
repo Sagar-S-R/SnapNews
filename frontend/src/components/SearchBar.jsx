@@ -28,7 +28,7 @@ const SearchBar = ({ onSearch, loading, placeholder = "Search for news..." }) =>
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-xl mx-auto">
       <form onSubmit={handleSubmit} className="relative">
         <div className="relative">
           <input
@@ -37,19 +37,17 @@ const SearchBar = ({ onSearch, loading, placeholder = "Search for news..." }) =>
             onChange={handleInputChange}
             placeholder={placeholder}
             disabled={loading}
-            className={`w-full px-4 py-3 pl-12 pr-20 text-gray-900 bg-white border-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+            className={`w-full px-4 py-2 pl-11 pr-24 text-neutral-900 bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-150 text-base ${
               error 
                 ? 'border-red-300 focus:ring-red-500' 
-                : 'border-gray-200 hover:border-gray-300'
+                : 'border-neutral-300 hover:border-neutral-400'
             } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           />
-          
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-          
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 h-5 w-5" />
           <button
             type="submit"
             disabled={loading || !query.trim()}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
+            className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-1.5 bg-blue-600 text-white rounded font-medium text-sm shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -58,7 +56,6 @@ const SearchBar = ({ onSearch, loading, placeholder = "Search for news..." }) =>
             )}
           </button>
         </div>
-        
         {error && (
           <div className="mt-2 flex items-center text-red-600 text-sm">
             <AlertCircle className="h-4 w-4 mr-1" />

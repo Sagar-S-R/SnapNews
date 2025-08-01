@@ -35,36 +35,33 @@ const NewsFilters = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+    <div className="bg-white border border-neutral-200 rounded-md p-3 mb-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full text-left focus:outline-none"
+        className="flex items-center justify-between w-full text-left focus:outline-none px-1 py-1"
         disabled={disabled}
       >
-        <div className="flex items-center">
-          <Filter className="h-5 w-5 text-gray-500 mr-2" />
-          <span className="font-medium text-gray-900">Filters</span>
-        </div>
+        <span className="flex items-center gap-2 text-sm font-medium text-neutral-800">
+          <Filter className="h-5 w-5 text-blue-500" />
+          Filters
+        </span>
         <ChevronDown 
-          className={`h-5 w-5 text-gray-500 transition-transform duration-200 ${
-            isOpen ? 'transform rotate-180' : ''
-          }`} 
+          className={`h-5 w-5 text-neutral-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
         />
       </button>
-
       {isOpen && (
-        <div className="mt-4 pt-4 border-t border-gray-100">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mt-3 pt-3 border-t border-neutral-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Category Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-neutral-600 mb-1">
                 Category
               </label>
               <select
                 value={category}
                 onChange={(e) => onCategoryChange(e.target.value)}
                 disabled={disabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-2 py-1.5 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {Object.entries(categories).map(([value, label]) => (
                   <option key={value} value={value}>
@@ -73,17 +70,16 @@ const NewsFilters = ({
                 ))}
               </select>
             </div>
-
             {/* Country Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-neutral-600 mb-1">
                 Country
               </label>
               <select
                 value={country}
                 onChange={(e) => onCountryChange(e.target.value)}
                 disabled={disabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-2 py-1.5 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {Object.entries(countries).map(([value, label]) => (
                   <option key={value} value={value}>
@@ -92,17 +88,16 @@ const NewsFilters = ({
                 ))}
               </select>
             </div>
-
             {/* Page Size Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-neutral-600 mb-1">
                 Articles per page
               </label>
               <select
                 value={pageSize}
                 onChange={(e) => onPageSizeChange(parseInt(e.target.value))}
                 disabled={disabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-2 py-1.5 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value={5}>5 articles</option>
                 <option value={10}>10 articles</option>
