@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     NEWSAPI_BASE_URL: str = "https://newsapi.org/v2"
     
     # Model settings
-    SUMMARIZER_MODEL: str = "facebook/bart-large-cnn"
+    SUMMARIZER_MODEL: str = "sshleifer/distilbart-cnn-6-6"
     MAX_INPUT_LENGTH: int = 1024
     MAX_OUTPUT_LENGTH: int = 150
     MIN_OUTPUT_LENGTH: int = 50
